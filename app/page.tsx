@@ -29,98 +29,180 @@ export default function Home() {
 
     if (car > electric && car > flight) {
       setRecommendation(
-        "Use public transport, carpool, or cycle for short trips."
+        "🚲 Use public transport, carpool, or cycle for short trips."
       );
     } else if (electric > car && electric > flight) {
       setRecommendation(
-        "Reduce electricity usage and switch to LED lighting."
+        "💡 Reduce electricity consumption and switch to LED lighting."
       );
     } else {
       setRecommendation(
-        "Reduce air travel and choose sustainable transportation."
+        "✈ Reduce air travel and choose sustainable transportation."
       );
     }
   };
 
   return (
-    <main className="min-h-screen bg-green-50 flex items-center justify-center p-6">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold text-green-700 text-center mb-2">
-          🌍 CarbonWise - Carbon Footprint Awareness Platform
+    <main className="min-h-screen bg-gradient-to-br from-green-100 via-white to-blue-100">
+
+      {/* HERO */}
+      <section className="text-center py-16 px-6">
+        <h1 className="text-6xl font-bold text-green-700">
+          🌍 CarbonWise
         </h1>
 
-        <p className="text-center text-gray-600 mb-6">
-         Calculate your emissions and discover practical ways to live sustainably.
+        <p className="text-xl text-gray-700 mt-4">
+          Carbon Footprint Awareness Platform
         </p>
 
-        <input
-          type="number"
-          placeholder="Car KM per week"
-          value={carKm}
-          onChange={(e) => setCarKm(e.target.value)}
-          className="w-full border p-3 rounded mb-3"
-        />
+        <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+          Understand, track and reduce your carbon footprint through
+          personalized sustainability insights.
+        </p>
+      </section>
 
-        <input
-          type="number"
-          placeholder="Electricity usage per month"
-          value={electricity}
-          onChange={(e) => setElectricity(e.target.value)}
-          className="w-full border p-3 rounded mb-3"
-        />
+      {/* FEATURES */}
+      <section className="max-w-6xl mx-auto px-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-6">
 
-        <input
-          type="number"
-          placeholder="Flights per year"
-          value={flights}
-          onChange={(e) => setFlights(e.target.value)}
-          className="w-full border p-3 rounded mb-3"
-        />
-
-        <select
-          value={diet}
-          onChange={(e) => setDiet(e.target.value)}
-          className="w-full border p-3 rounded mb-4"
-        >
-          <option value="veg">Vegetarian</option>
-          <option value="mixed">Mixed Diet</option>
-          <option value="meat">Heavy Meat Diet</option>
-        </select>
-
-        <button
-          onClick={calculateCarbon}
-          className="w-full bg-green-600 text-white p-3 rounded hover:bg-green-700"
-        >
-          Calculate
-        </button>
-
-        {result !== null && (
-          <div className="mt-6 text-center">
-            <h2 className="text-xl font-bold">
-              Your Carbon Footprint
-            </h2>
-
-            <p className="text-2xl text-green-700 mt-2">
-              {result.toFixed(0)} kg CO₂/year
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-2xl font-bold mb-2">
+              🌱 Calculate
+            </h3>
+            <p>
+              Estimate your annual carbon emissions from daily activities.
             </p>
-
-            <p className="text-lg font-semibold mt-3">
-              Eco Score: {score}/100
-            </p>
-
-            <p className="mt-3 text-green-700">
-              🌳 Trees needed to offset: {Math.ceil(result / 21)}
-            </p>
-
-            <div className="mt-4 p-3 bg-green-100 rounded-lg">
-              <p className="font-medium">
-                💡 Recommendation
-              </p>
-              <p>{recommendation}</p>
-            </div>
           </div>
-        )}
-      </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-2xl font-bold mb-2">
+              📊 Track
+            </h3>
+            <p>
+              Monitor your environmental impact and sustainability score.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-2xl font-bold mb-2">
+              ♻ Reduce
+            </h3>
+            <p>
+              Receive recommendations to lower your emissions.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* CALCULATOR */}
+      <section className="max-w-3xl mx-auto px-6 pb-16">
+
+        <div className="bg-white shadow-xl rounded-2xl p-8">
+
+          <h2 className="text-3xl font-bold text-center mb-8 text-green-700">
+            Carbon Calculator
+          </h2>
+
+          <label className="font-medium">
+            Car KM per week
+          </label>
+
+          <input
+            type="number"
+            value={carKm}
+            onChange={(e) => setCarKm(e.target.value)}
+            className="w-full border p-3 rounded-lg mb-4"
+          />
+
+          <label className="font-medium">
+            Electricity Usage per Month
+          </label>
+
+          <input
+            type="number"
+            value={electricity}
+            onChange={(e) => setElectricity(e.target.value)}
+            className="w-full border p-3 rounded-lg mb-4"
+          />
+
+          <label className="font-medium">
+            Flights per Year
+          </label>
+
+          <input
+            type="number"
+            value={flights}
+            onChange={(e) => setFlights(e.target.value)}
+            className="w-full border p-3 rounded-lg mb-4"
+          />
+
+          <label className="font-medium">
+            Diet Type
+          </label>
+
+          <select
+            value={diet}
+            onChange={(e) => setDiet(e.target.value)}
+            className="w-full border p-3 rounded-lg mb-6"
+          >
+            <option value="veg">Vegetarian</option>
+            <option value="mixed">Mixed Diet</option>
+            <option value="meat">Heavy Meat Diet</option>
+          </select>
+
+          <button
+            onClick={calculateCarbon}
+            className="w-full bg-green-600 hover:bg-green-700 text-white p-4 rounded-lg font-bold"
+          >
+            Calculate Footprint
+          </button>
+
+          {result !== null && (
+            <div className="mt-8">
+
+              <div className="bg-green-50 rounded-xl p-6 text-center">
+
+                <h3 className="text-2xl font-bold">
+                  Your Carbon Footprint
+                </h3>
+
+                <p className="text-4xl text-green-700 font-bold mt-3">
+                  {result.toFixed(0)} kg CO₂/year
+                </p>
+
+                <p className="text-xl mt-4">
+                  Eco Score: {score}/100
+                </p>
+
+                <p className="mt-3">
+                  🌳 Trees Needed: {Math.ceil(result / 21)}
+                </p>
+
+              </div>
+
+              <div className="bg-blue-50 rounded-xl p-6 mt-6">
+
+                <h3 className="font-bold text-xl mb-2">
+                  Personalized Recommendation
+                </h3>
+
+                <p>{recommendation}</p>
+
+              </div>
+
+            </div>
+          )}
+
+        </div>
+
+      </section>
+
+      {/* FOOTER */}
+      <footer className="text-center py-8 text-gray-600">
+        Built for PromptWars Challenge 3 🚀
+      </footer>
+
     </main>
   );
 }
